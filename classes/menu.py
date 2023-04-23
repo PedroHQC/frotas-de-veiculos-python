@@ -66,6 +66,7 @@ class Menu:
             try:
                 option = int(option)
 
+
                 
                 if option == 1:
                     pass
