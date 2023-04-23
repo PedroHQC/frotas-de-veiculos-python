@@ -43,14 +43,11 @@ class admin:
                 return i
 
     def editVeicle(self, veiclePlate, veicleDb):
-        veiclePlate = self.searchVeicle(veiclePlate, veicleDb)
+        veicleToEdit = self.searchVeicle(veiclePlate, veicleDb)
 
-        if veiclePlate == None:
-            return
-        
-        Menu.veicleMenuEdit()
-
-        #esperando menu    
+        if veicleToEdit:
+            Menu.veicleMenuEdit()
+    
     def deleteVeicle(self, veiclePlate,veicleDb):
         veiclePlate = self.searchVeicle(veiclePlate, veicleDb)
 
