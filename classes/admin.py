@@ -2,28 +2,16 @@ from driver import driver
 from veicle import veicle
 from suply import suply
 from menu import Menu
+
 class admin:
     def registerDriver(self,driversDb ):
 
-        driversDb.append(driver(str(input("Digite o nome do motorista: ")),str(input("Digite o CPF do motorista: ")),str(input("Digite o RG do motorista: ")),str(input("Digite a CNH do motorista: "))))
+        name = str(input("Digite o nome do motorista: "))
+        cpf = str(input("Digite o CPF do motorista: "))
+        rg = str(input("Digite o RG do motorista: "))
+        cnh = str(input("Digite a CNH do motorista: "))
 
-    def searchDriver(self,searchData,driverDb):
-            for i in driverDb:
-                if i.CPF == searchData:
-                    return i
-
-    def deleteDriver(self,driverData, driverDb):
-        if driverData == self.searchDriver(driverData, driverDb).CPf:
-            driverDb.remove(self.searchDriver(driverData, driverDb))
-
-    def registerVeicle(self, veicleDb):
-        veicleDb.append((veicle(str(input("Digite a marca do veiculo: ")),
-                                str(input("Digite o modelo do veiculo: ")),
-                                str(input("Digite o ano do veiculo: ")),
-                                str(input("Digite a placa")),
-                                str(input("Digite o chassi")), 
-                                str(input("Digite a cor: ")), 
-                                float(input("Digite a quilometragem: ")))))
+        driversDb.append(driver(name,cpf,rg,cnh))
 
     def searchVeicle(self, veiclePlate, veicleDb):
         for i in veicleDb:
@@ -31,9 +19,14 @@ class admin:
                 return i
 
     def editVeicle(self, veiclePlate, veicleDb):
-        self.searchVeicle(veiclePlate, veicleDb)
-        #esperando menu    
+        veiclePlate = self.searchVeicle(veiclePlate, veicleDb)
 
+        if veiclePlate == None:
+            return
+        
+        Menu.veicleMenuEdit()
+
+        #esperando menu    
     def deleteVeicle(self, veiclePlate,veicleDb):
         veicleDb.remove(self.searchVeicle(veiclePlate, veicleDb))
 
