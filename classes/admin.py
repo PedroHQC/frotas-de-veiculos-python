@@ -5,6 +5,7 @@ from menu import Menu
 from trip import trip
 
 class admin:
+
     def registerDriver(self,driversDb ):
 
         name = str(input("Digite o nome do motorista: "))
@@ -77,13 +78,20 @@ class admin:
         maintainanceDb.append(veicleData, date, mType, cost)
 
     def registryTrip(self,tripDb, driverDb, veicleDb):
+        tripDate = str(input("Digite a data da viagem: "))
         origin = str(input("Digite o local de inicio da viagem: "))
         destiny = str(input("Digite o destino da viagem: "))
         distance = float(input("Digite a distancia da viagem em km: "))
         tripDriver = self.searchDriver(str(input("Digite o CPF do motorista: ")),driverDb)
         tripVeicle = self.searchVeicle(str(input("Digite a placa do veiculo da viagem: ")),veicleDb)
 
-        tripDb.append(trip(origin, destiny, distance, tripDriver, tripVeicle))
+        tripDb.append(trip(tripDate,origin, destiny, distance, tripDriver, tripVeicle))
 
     def editTrip(self, tripDb):
-        pass
+        origin = str(input("Digite a origem da viagem: "))
+        destiny = str(input("Digite o destino: "))
+        date = str(input("Digite a data da viagem: "))
+
+        for trip in tripDb:
+            if trip.origin == origin and trip.destiny == destiny and trip.tripDate == date:
+                return trip
