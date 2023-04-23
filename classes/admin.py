@@ -13,31 +13,6 @@ class admin:
 
         driversDb.append(driver(name,cpf,rg,cnh))
 
-    def searchDriver(self,searchData, driverDb):
-        for i in driverDb:
-            if i.CPF == searchData:
-                return i
-
-    def deleteDriver(self, driverData, driverDb):
-        driverDb = self.searchDriver(driverData, driverDb)
-
-        if driverDb == None:
-            return
-        
-        driverDb.remove(driverDb)
-
-    def registerVeicle(self, veicleDb):
-
-        brand = str(input("Digite a marca do veiculo: "))
-        model = str(input("Digite o modelo do veiculo: "))
-        year = str(input("Digite o ano do veiculo: "))
-        plate = str(input("Digite a placa"))
-        chassis = str(input("Digite o chassi"))
-        color = str(input("Digite a cor: "))
-        mileage =  str(input("Digite a quilometragem: "))
-
-        veicleDb.append((veicle(brand,model,year,plate,chassis,color,mileage)))
-
     def searchVeicle(self, veiclePlate, veicleDb):
         for i in veicleDb:
             if i.plate == veiclePlate:
@@ -58,5 +33,25 @@ class admin:
     def checkVeicleMileage(self, veiclePlate, veicleDb):
         return self.searchVeicle(veiclePlate, veicleDb).mileage
     
-    def registrySuply(self, suplyDb):
-        suplyDb.append(suply(str(input("Digite a data do reabastecimento: ")), str(input("Digite a quantidade de combustivel abastecido: ")), str(input("Digite o valor cobrado: ")), self.searchVeicle(str(input("digite a ")))))
+    def registrySuply(self, suplyDb, veicleDb):
+        suplyDb.append(suply(str(input("Digite a data do reabastecimento: ")),
+                            str(input("Digite a quantidade de combustivel abastecido: ")),
+                            float(input("Digite o valor cobrado: ")),
+                            self.searchVeicle(str(input("Digite a placa do veiculo: ")),veicleDb),
+                            str(input("Digite o tipo de combustivel: "))))
+    
+    def registryMaintainance(self,maintainanceDb, veicleDb):
+
+        veicleData = self.searchVeicle(str(input("Digite a placa do veiculo: ")), veicleDb)
+        date = str(input("Digite a data da manutenção: "))
+        mType = str(input("Digite o tipo da manutanção: "))
+        cost = float("Digite o valor da manutenção: ")
+        
+        maintainanceDb.append(veicleData, date, mType, cost)
+
+    def registryTrip(self, driverDb, veicleDb):
+        origin = str(input("Digite o local de inicio da viagem: "))
+        destiny = str(input("Digite o destino da viagem: "))
+        distance = float(input("Digite a distancia da viagem em km: "))
+        tripDriver = self.searchDriver(str(input("Digite o CPF do motorista: ")),driverDb)
+        tripVeicle = self.searchVeicle(str(input("Digite a placa do veiculo da viagem: ")),veicleDb)
