@@ -17,7 +17,7 @@ class Menu:
         Menu.line()
 
     @staticmethod
-    def motorista_menu():
+    def driverMenu():
         while True:
             print("[1] Cadastrar Motorista")
             print("[2] Pesquisar Motorista")
@@ -37,7 +37,7 @@ class Menu:
                 elif option == 2:
                     pass
                 elif option == 3:
-                    Menu.motorista_menu_editar()
+                    Menu.driverMenuEdit()
                 elif option == 4:
                     pass
                 elif option == 0:
@@ -50,7 +50,7 @@ class Menu:
                 print("Opção inválida. Por favor, digite um número válido.")
     
     @staticmethod 
-    def motorista_menu_editar():
+    def driverMenuEdit():
         while True:
             print("O que deseja editar?")
             Menu.line()
@@ -87,7 +87,7 @@ class Menu:
     
 
     @staticmethod
-    def veiculo_menu():
+    def veicleMenu():
         while True:
             print("[1] Cadastrar Veículo")
             print("[2] Pesquisar Veículo")
@@ -106,7 +106,7 @@ class Menu:
                 elif option == 2:
                     pass
                 elif option == 3:
-                    Menu.veiculo_menu_editar()
+                    Menu.veicleMenuEdit()
                 elif option == 4:
                     pass
                 elif option == 5:
@@ -121,7 +121,7 @@ class Menu:
                 print("Opção inválida. Por favor, digite um número válido.")
 
     @staticmethod 
-    def veiculo_menu_editar():
+    def veicleMenuEdit():
         while True:
             print("O que deseja editar?")
             Menu.line()
@@ -163,7 +163,7 @@ class Menu:
                 print("Opção inválida. Por favor, digite um número válido.")
 
     @staticmethod
-    def viagem_menu():
+    def tripMenu():
         while True:
             print('[1] Cadastrar Viagem')
             print('[2] Editar Viagem')
@@ -177,7 +177,7 @@ class Menu:
                 if option == 1:
                     pass
                 elif option == 2:
-                    Menu.viagem_menu_editar()
+                    Menu.tripMenuEdit()
                 elif option == 0:
                     print("Saindo ...")
                     return
@@ -188,7 +188,7 @@ class Menu:
                 print("Opção inválida. Por favor, digite um número válido.")
     
     @staticmethod 
-    def viagem_menu_editar():
+    def tripMenuEdit():
         while True:
             print("O que deseja editar?")
             Menu.line()

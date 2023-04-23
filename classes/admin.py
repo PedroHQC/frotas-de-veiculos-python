@@ -2,29 +2,41 @@ from driver import driver
 from veicle import veicle
 from suply import suply
 from menu import Menu
+
 class admin:
     def registerDriver(self,driversDb ):
 
-        driversDb.append(driver(str(input("Digite o nome do motorista: ")),str(input("Digite o CPF do motorista: ")),str(input("Digite o RG do motorista: ")),str(input("Digite a CNH do motorista: "))))
+        name = str(input("Digite o nome do motorista: "))
+        cpf = str(input("Digite o CPF do motorista: "))
+        rg = str(input("Digite o RG do motorista: "))
+        cnh = str(input("Digite a CNH do motorista: "))
 
-    def searchDriver(sef,searchData,searchMode, driverDb):
-        if searchMode == "1":
-            for i in driverDb:
-                if i.CPF == searchData:
-                    return i
-        elif searchMode == "2":
-            for i in driverDb:
-                if i.CNH == searchData:
-                    return i
-        else:
-            pass
+        driversDb.append(driver(name,cpf,rg,cnh))
 
-    def deleteDriver(self,driverData, searchMode, driverDb):
-        if driverData == self.searchDriver(driverData, searchMode, driverDb).CPf or driverData == self.searchDriver(driverData, searchMode, driverDb).CNH:
-            driverDb.remove(self.searchDriver(driverData, searchMode, driverDb))
+    def searchDriver(self,searchData, driverDb):
+        for i in driverDb:
+            if i.CPF == searchData:
+                return i
+
+    def deleteDriver(self, driverData, driverDb):
+        driverDb = self.searchDriver(driverData, driverDb)
+
+        if driverDb == None:
+            return
+        
+        driverDb.remove(driverDb)
 
     def registerVeicle(self, veicleDb):
-        veicleDb.append((veicle(str(input("Digite a marca do veiculo: ")),str(input("Digite o modelo do veiculo: ")),str(input("Digite o ano do veiculo: ")),str(input("Digite a placa")),str(input("Digite o chassi")), str(input("Digite a cor: ")), str(input("Digite a quilometragem: ")))))
+
+        brand = str(input("Digite a marca do veiculo: "))
+        model = str(input("Digite o modelo do veiculo: "))
+        year = str(input("Digite o ano do veiculo: "))
+        plate = str(input("Digite a placa"))
+        chassis = str(input("Digite o chassi"))
+        color = str(input("Digite a cor: "))
+        mileage =  str(input("Digite a quilometragem: "))
+
+        veicleDb.append((veicle(brand,model,year,plate,chassis,color,mileage)))
 
     def searchVeicle(self, veiclePlate, veicleDb):
         for i in veicleDb:
@@ -32,9 +44,14 @@ class admin:
                 return i
 
     def editVeicle(self, veiclePlate, veicleDb):
-        self.searchVeicle(veiclePlate, veicleDb)
-        #esperando menu    
+        veiclePlate = self.searchVeicle(veiclePlate, veicleDb)
 
+        if veiclePlate == None:
+            return
+        
+        Menu.veicleMenuEdit()
+
+        #esperando menu    
     def deleteVeicle(self, veiclePlate,veicleDb):
         veicleDb.remove(self.searchVeicle(veiclePlate, veicleDb))
 
