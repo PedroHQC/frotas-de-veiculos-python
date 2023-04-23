@@ -15,17 +15,16 @@ class admin:
         driversDb.append(driver(name,cpf,rg,cnh))
 
     def searchDriver(self,searchData, driverDb):
-        for i in driverDb:
-            if i.CPF == searchData:
-                return i
+        for driver in driverDb:
+            if driver.CPF == searchData:
+                return driver
 
     def deleteDriver(self, driverData, driverDb):
-        driverDb = self.searchDriver(driverData, driverDb)
+        driverToRemove = self.searchDriver(driverData, driverDb)
 
-        if driverDb == None:
-            return
+        if driverToRemove:
+            driverDb.remove(driverToRemove)
         
-        driverDb.remove(driverDb)
 
     def registerVeicle(self, veicleDb):
 
@@ -45,19 +44,26 @@ class admin:
                 return i
 
     def editVeicle(self, veiclePlate, veicleDb):
+        veicleToEdit = self.searchVeicle(veiclePlate, veicleDb)
+
+        if veicleToEdit:
+            Menu.veicleMenuEdit()
+    
+    def deleteVeicle(self, veiclePlate,veicleDb):
         veiclePlate = self.searchVeicle(veiclePlate, veicleDb)
 
         if veiclePlate == None:
             return
         
-        Menu.veicleMenuEdit()
-
-        #esperando menu    
-    def deleteVeicle(self, veiclePlate,veicleDb):
-        veicleDb.remove(self.searchVeicle(veiclePlate, veicleDb))
+        veicleDb.remove(veiclePlate)
 
     def checkVeicleMileage(self, veiclePlate, veicleDb):
-        return self.searchVeicle(veiclePlate, veicleDb).mileage
+        veiclePlate = self.searchVeicle(veiclePlate, veicleDb) 
+
+        if veiclePlate == None:
+            return
+
+        return veiclePlate.mileage
     
     def registrySuply(self, suplyDb):
         suplyDb.append(suply(str(input("Digite a data do reabastecimento: ")), str(input("Digite a quantidade de combustivel abastecido: ")), str(input("Digite o valor cobrado: ")), self.searchVeicle(str(input("digite a ")))))
