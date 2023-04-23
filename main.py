@@ -1,4 +1,5 @@
-from classes.menu import Menu
+
+from classes.admin import *
 
 def init():
     while True:
