@@ -2,6 +2,7 @@ from driver import driver
 from veicle import veicle
 from suply import suply
 from menu import Menu
+from trip import trip
 
 class admin:
     def registerDriver(self,driversDb ):
@@ -60,3 +61,23 @@ class admin:
     
     def registrySuply(self, suplyDb):
         suplyDb.append(suply(str(input("Digite a data do reabastecimento: ")), str(input("Digite a quantidade de combustivel abastecido: ")), str(input("Digite o valor cobrado: ")), self.searchVeicle(str(input("digite a ")))))
+    def registryMaintainance(self,maintainanceDb, veicleDb):
+
+        veicleData = self.searchVeicle(str(input("Digite a placa do veiculo: ")), veicleDb)
+        date = str(input("Digite a data da manutenção: "))
+        mType = str(input("Digite o tipo da manutanção: "))
+        cost = float("Digite o valor da manutenção: ")
+        
+        maintainanceDb.append(veicleData, date, mType, cost)
+
+    def registryTrip(self,tripDb, driverDb, veicleDb):
+        origin = str(input("Digite o local de inicio da viagem: "))
+        destiny = str(input("Digite o destino da viagem: "))
+        distance = float(input("Digite a distancia da viagem em km: "))
+        tripDriver = self.searchDriver(str(input("Digite o CPF do motorista: ")),driverDb)
+        tripVeicle = self.searchVeicle(str(input("Digite a placa do veiculo da viagem: ")),veicleDb)
+
+        tripDb.append(trip(origin, destiny, distance, tripDriver, tripVeicle))
+
+    def editTrip(self, tripDb):
+        pass
