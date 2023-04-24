@@ -3,7 +3,7 @@ from veicle import veicle
 from suply import suply
 from menu import Menu
 from trip import trip
-
+from maintainance import maintainance
 class admin:
 
     def registerDriver(self,driversDb ):
@@ -59,12 +59,12 @@ class admin:
         veicleDb.remove(veiclePlate)
 
     def checkVeicleMileage(self, veiclePlate, veicleDb):
-        veiclePlate = self.searchVeicle(veiclePlate, veicleDb) 
+        veicle = self.searchVeicle(veiclePlate, veicleDb) 
 
-        if veiclePlate == None:
+        if veicle == None:
             return
 
-        return veiclePlate.mileage
+        return veicle.mileage
     
     def registrySuply(self, suplyDb):
         suplyDb.append(suply(str(input("Digite a data do reabastecimento: ")), str(input("Digite a quantidade de combustivel abastecido: ")), str(input("Digite o valor cobrado: ")), self.searchVeicle(str(input("digite a ")))))
@@ -75,7 +75,7 @@ class admin:
         mType = str(input("Digite o tipo da manutanção: "))
         cost = float("Digite o valor da manutenção: ")
         
-        maintainanceDb.append(veicleData, date, mType, cost)
+        maintainanceDb.append(maintainance(veicleData, date, mType, cost))
 
     def registryTrip(self,tripDb, driverDb, veicleDb):
         tripDate = str(input("Digite a data da viagem: "))
