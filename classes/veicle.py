@@ -1,4 +1,4 @@
-class veicle:
+class Veicle:
     def __init__(self, brand, model, year, plate, chassis, color, mileage) -> None:
         
         self.brand = brand
