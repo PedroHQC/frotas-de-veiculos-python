@@ -20,8 +20,7 @@ class Menu:
         Menu.line()
 
     @staticmethod
-    def driverMenu():
-        admin = Admin()
+    def driverMenu(admin):
 
         while True:
             print("[1] Cadastrar Motorista")
@@ -65,9 +64,7 @@ class Menu:
                 print("Opção inválida. Por favor, digite um número válido.\n")
     
     @staticmethod 
-    def driverMenuEdit():
-        admin = Admin()
-
+    def driverMenuEdit(admin):
         while True:
             print("O que deseja editar?")
             Menu.line()
@@ -104,8 +101,8 @@ class Menu:
     
 
     @staticmethod
-    def veicleMenu():
-        admin = Admin()
+    def veicleMenu(admin):
+      
 
         while True:
             print("[1] Cadastrar Veículo")
@@ -149,8 +146,8 @@ class Menu:
                 print("Opção inválida. Por favor, digite um número válido.")
 
     @staticmethod 
-    def veicleMenuEdit():
-        admin = Admin()
+    def veicleMenuEdit(admin):
+       
 
         while True:
             print("O que deseja editar?")
@@ -193,8 +190,7 @@ class Menu:
                 print("Opção inválida. Por favor, digite um número válido.")
 
     @staticmethod
-    def tripMenu():
-        admin = Admin()
+    def tripMenu(admin):
 
         while True:
             print('[1] Cadastrar Viagem')
@@ -226,8 +222,7 @@ class Menu:
                 print("Opção inválida. Por favor, digite um número válido.")
     
     @staticmethod 
-    def tripMenuEdit():
-        admin = Admin()
+    def tripMenuEdit(admin):
 
         while True:
             print("O que deseja editar?")
@@ -268,8 +263,8 @@ class Menu:
                 print("Opção inválida. Por favor, digite um número válido.")
     
     @staticmethod
-    def suplyMenu():
-        admin = Admin()
+    def suplyMenu(admin):
+        
 
         while True:
             print('[1] Cadastrar Abastecimento')
@@ -292,8 +287,8 @@ class Menu:
                 print("Opção inválida. Por favor, digite um número válido.")
                 
     @staticmethod
-    def maintainanceMenu():
-        admin = Admin()
+    def maintainanceMenu(admin):
+
 
         while True:
             print('[1] Cadastrar Manuntencao')
@@ -309,8 +304,7 @@ class Menu:
                 print("Opção inválida. Por favor, digite um número válido.")    
                 
     @staticmethod
-    def relatorioMenu():
-        admin = Admin()
+    def relatorioMenu(admin):
 
         while True:
             print("[1] Quantidade de motorista")

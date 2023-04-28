@@ -1,11 +1,8 @@
-from classes.Driver import Driver
-from classes.Veicle import Veicle
-from classes.Suply import Suply 
-from classes.Menu import Menu
-from classes.Trip import Trip
-from classes.Maintainance import Maintainance
+from classes.Menu import Menu, Admin
+
 
 def init():
+    admin = Admin()
     while True:
         Menu.menu()
 
@@ -15,17 +12,17 @@ def init():
             option = int(option)
 
             if option == 1:
-                Menu.driverMenu()
+                Menu.driverMenu(admin)
             elif option == 2:
-                Menu.veicleMenu()
+                Menu.veicleMenu(admin)
             elif option == 3:
-                Menu.tripMenu()
+                Menu.tripMenu(admin)
             elif option == 4:
-                Menu.suplyMenu()
+                Menu.suplyMenu(admin)
             elif option == 5:
-                Menu.maintainanceMenu()
+                Menu.maintainanceMenu(admin)
             elif option == 6:
-                Menu.relatorioMenu()
+                Menu.relatorioMenu(admin)
             elif option == 0:
                 print("Saindo ...")
                 return
