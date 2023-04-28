@@ -1,7 +1,6 @@
-
 class Driver:
-    def __init__(self, name = "Nome não informado", cpf = "CPF não informado", rg = "RG não informado", cnh = "CNH não informado") -> None:
-        
+
+    def __init__(self, name, cpf, rg, cnh) -> None:
         self.name = name
         self.cpf  = cpf
         self.rg = rg

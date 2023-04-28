@@ -1,5 +1,5 @@
-from Veicle import Veicle
-from Driver import Driver
+from .Veicle import Veicle
+from .Driver import Driver
 
 class Trip:
     def __init__(self,tripDate, origin, destiny, distance, tripDriver: Driver, tripVeicle: Veicle, codTrip) -> None:

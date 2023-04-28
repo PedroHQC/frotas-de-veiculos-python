@@ -1,6 +1,7 @@
-from Admin import Admin
+from .Admin import Admin
 
 class Menu:
+
     @staticmethod
     def line():
         print('-'*20)
@@ -20,12 +21,17 @@ class Menu:
 
     @staticmethod
     def driverMenu():
+        admin = Admin()
+
         while True:
             print("[1] Cadastrar Motorista")
             print("[2] Pesquisar Motorista")
             print("[3] Editar Motorista")
             print("[4] Deletar Motorista")
+            print("[5] Exibir Motoristas")
             print("[0] Sair")
+          
+
             Menu.line()
 
             option = input("Sua opção: ")
@@ -35,18 +41,23 @@ class Menu:
 
                 
                 if option == 1:
-                    Admin.registerDriver()
+                    admin.registerDriver()
                     print("Motorista cadastrado com sucesso! \n")
-                elif option == 2:
-                    Admin.searchDriver()
-                elif option == 3:
-                    Menu.driverMenuEdit()
-                elif option == 4:
-                    Admin.deleteDriver()
-                    print("Motorista deletado com sucesso!\n")
+
                 elif option == 0:
                     print("Saindo ...\n")
                     return
+
+                elif len(admin.drivers) > 0:
+                    if option == 2:
+                        admin.searchDriver()
+                    elif option == 3:
+                        Menu.driverMenuEdit()
+                    elif option == 4:
+                        admin.deleteDriver()
+                        print("Motorista deletado com sucesso!\n")
+                    elif option == 5:
+                        admin.showDriver()
                 else:
                     print("[ERROR] Opção Inválida\n")
 
@@ -55,6 +66,8 @@ class Menu:
     
     @staticmethod 
     def driverMenuEdit():
+        admin = Admin()
+
         while True:
             print("O que deseja editar?")
             Menu.line()
@@ -73,13 +86,13 @@ class Menu:
 
                 
                 if option == 1:
-                    Admin.editDriver("name")
+                    admin.editDriver("name")
                 elif option == 2:
-                    Admin.editDriver("cpf")
+                    admin.editDriver("cpf")
                 elif option == 3:
-                    Admin.editDriver("rg")
+                    admin.editDriver("rg")
                 elif option == 4:
-                    Admin.editDriver("cnh")
+                    admin.editDriver("cnh")
                 elif option == 0:
                     print("Saindo ...")
                     return
@@ -92,12 +105,16 @@ class Menu:
 
     @staticmethod
     def veicleMenu():
+        admin = Admin()
+
         while True:
             print("[1] Cadastrar Veículo")
             print("[2] Pesquisar Veículo")
             print("[3] Editar Veículo")
             print("[4] Deletar Veículo")
             print("[5] Ver quilometragem de Veículo")
+            print("[6] Exibir Veículos")
+            print("[0] Voltar")
             Menu.line()
 
             option = input("Sua opção: ")
@@ -106,18 +123,25 @@ class Menu:
                 option = int(option)
 
                 if option == 1:
-                    Admin.registerVeicle()
-                elif option == 2:
-                    Admin.searchVeicle()
-                elif option == 3:
-                    Menu.veicleMenuEdit()
-                elif option == 4:
-                    Admin.deleteVeicle()
-                elif option == 5:
-                    Admin.checkVeicleMileage()
+                    admin.registerVeicle()
+
                 elif option == 0:
                     print("Saindo ...")
                     return
+
+
+                elif len(admin.veicles) > 0:
+
+                    if option == 2:
+                        admin.searchVeicle()
+                    elif option == 3:
+                        Menu.veicleMenuEdit()
+                    elif option == 4:
+                        admin.deleteVeicle()
+                    elif option == 5:
+                        admin.checkVeicleMileage()
+                    elif option == 6:
+                        admin.showVeicle()
                 else:
                     print("[ERROR] Opção Inválida")
 
@@ -126,6 +150,8 @@ class Menu:
 
     @staticmethod 
     def veicleMenuEdit():
+        admin = Admin()
+
         while True:
             print("O que deseja editar?")
             Menu.line()
@@ -144,19 +170,19 @@ class Menu:
                 option = int(option)
 
                 if option == 1:
-                    Admin.editVeicle("brand")
+                    admin.editVeicle("brand")
                 elif option == 2:
-                    Admin.editVeicle("model")
+                    admin.editVeicle("model")
                 elif option == 3:
-                    Admin.editVeicle("year")
+                    admin.editVeicle("year")
                 elif option == 4:
-                    Admin.editVeicle("plate")
+                    admin.editVeicle("plate")
                 elif option == 5:
-                    Admin.editVeicle("chassis")
+                    admin.editVeicle("chassis")
                 elif option == 6:
-                    Admin.editVeicle("color")
+                    admin.editVeicle("color")
                 elif option == 7:
-                    Admin.editVeicle("mileage")
+                    admin.editVeicle("mileage")
                 elif option == 0:
                     print("Saindo ...")
                     return
@@ -168,9 +194,13 @@ class Menu:
 
     @staticmethod
     def tripMenu():
+        admin = Admin()
+
         while True:
             print('[1] Cadastrar Viagem')
             print('[2] Editar Viagem')
+            print('[3] Mostrar viagens')
+            print('[0] Voltar')
             Menu.line()
 
             option = input("Sua opção: ")
@@ -179,20 +209,26 @@ class Menu:
                 option = int(option)
 
                 if option == 1:
-                    Admin.registryTrip()
-                elif option == 2:
-                    Menu.tripMenuEdit()
+                    admin.registryTrip()
                 elif option == 0:
                     print("Saindo ...")
                     return
-                else:
-                    print("[ERROR] Opção Inválida")
+                
+                if len(admin.trips) > 0:
+                    if option == 2:
+                        Menu.tripMenuEdit()
+                    elif option == 3:
+                        admin.showTrip()
+                    else:
+                        print("[ERROR] Opção Inválida")
 
             except ValueError:
                 print("Opção inválida. Por favor, digite um número válido.")
     
     @staticmethod 
     def tripMenuEdit():
+        admin = Admin()
+
         while True:
             print("O que deseja editar?")
             Menu.line()
@@ -211,17 +247,17 @@ class Menu:
                 option = int(option)
 
                 if option == 1:
-                    Admin.editTrip("tripDate")
+                    admin.editTrip("tripDate")
                 elif option == 2:
-                    Admin.editTrip("origin")
+                    admin.editTrip("origin")
                 elif option == 3:
-                    Admin.editTrip("destiny")
+                    admin.editTrip("destiny")
                 elif option == 4:
-                    Admin.editTrip("distance")
+                    admin.editTrip("distance")
                 elif option == 5:
-                    Admin.editTrip("tripDriver")
+                    admin.editTrip("tripDriver")
                 elif option == 6:
-                    Admin.editTrip("tripVeicle")
+                    admin.editTrip("tripVeicle")
                 elif option == 0:
                     print("Saindo ...")
                     return
@@ -233,21 +269,32 @@ class Menu:
     
     @staticmethod
     def suplyMenu():
+        admin = Admin()
+
         while True:
             print('[1] Cadastrar Abastecimento')
+            print('[0] Voltar')
             Menu.line()
 
             option = input("Sua opção: ")
             
             try:
                 option = int(option)
+
                 if option == 1:
-                    Admin.registrySuply()
+                    admin.registrySuply()
+                elif option == 0:
+                    print('Voltando ...')
+                else:
+                    print("[ERROR] Opção Inválida")
+
             except ValueError:
                 print("Opção inválida. Por favor, digite um número válido.")
                 
     @staticmethod
     def maintainanceMenu():
+        admin = Admin()
+
         while True:
             print('[1] Cadastrar Manuntencao')
             Menu.line()
@@ -257,12 +304,14 @@ class Menu:
             try:
                 option = int(option)
                 if option == 1:
-                    Admin.registryMaintainance()
+                    admin.registryMaintainance()
             except ValueError:
                 print("Opção inválida. Por favor, digite um número válido.")    
                 
     @staticmethod
     def relatorioMenu():
+        admin = Admin()
+
         while True:
             print("[1] Quantidade de motorista")
             print("[2] Quantidade de veiculos")
@@ -279,17 +328,17 @@ class Menu:
                 option = int(option)
 
                 if option == 1:
-                    Admin.driversQuantity()
+                    admin.driversQuantity()
                 elif option == 2:
-                    Admin.veiclesQuantity()
+                    admin.veiclesQuantity()
                 elif option == 3:
-                    Admin.showDriverMostTrips()
+                    admin.showDriverMostTrips()
                 elif option == 4:
-                    Admin.showDriverMileage()
+                    admin.showDriverMileage()
                 elif option == 5:
-                    Admin.showVeicleBiggerMileage()
+                    admin.showVeicleBiggerMileage()
                 elif option == 6:
-                    Admin.totalSpents()
+                    admin.totalSpents()
                 elif option == 0:
                     print("Saindo ...\n")
                     return
@@ -298,4 +347,3 @@ class Menu:
 
             except ValueError:
                 print("Opção inválida. Por favor, digite um número válido.\n")       
-            
