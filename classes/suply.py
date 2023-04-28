@@ -1,7 +1,7 @@
-from veicle import veicle
+from veicle import Veicle
 
 class Suply:
-    def __init__(self, date, amount, value, veicle: veicle, gastype) -> None:
+    def __init__(self, date, amount, value, veicle: Veicle, gastype) -> None:
         
         self.date = date
         self.amount = amount

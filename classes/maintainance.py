@@ -1,8 +1,8 @@
-from veicle import veicle
+from veicle import Veicle
 
 class Maintainance:
 
-    def __init__(self, veicle: veicle, date, maintainanceType, cost) -> None:
+    def __init__(self, veicle: Veicle, date, maintainanceType, cost) -> None:
         self.veicle = veicle
         self.date = date
         self.maintainanceType = maintainanceType
