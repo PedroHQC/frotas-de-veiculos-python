@@ -1,9 +1,8 @@
-from Driver import Driver
-from Veicle import Veicle
-from Suply import Suply 
-from Menu import Menu
-from Trip import Trip
-from Maintainance import Maintainance
+from .Driver import Driver
+from .Veicle import Veicle
+from .Suply import Suply 
+from .Trip import Trip
+from .Maintainance import Maintainance
 
 class Admin:
     def __init__(self):
@@ -92,9 +91,6 @@ class Admin:
         else:
             print("Motorista não encontrado!\n")
 
-        if veicleToEdit:
-            Menu.veicleMenuEdit()
-    
     def deleteVeicle(self):
         veiclePlate = str(input("Digite a placa do motorista que deseja procurar, sem pontos: "))
         veicleToRemove = self.searchVeicle(veiclePlate)
@@ -144,10 +140,6 @@ class Admin:
             print("Motorista modificado com sucesso!\n")
         else:
             print("Motorista não encontrado!\n")
-
-        if tripToEdit:
-            Menu.tripMenuEdit()
-            
     def checkVeicleMileage(self):
         veiclePlate = str(input("Digite a placa do motorista, sem pontos: "))
         veicleMileage = self.searchVeicle(veiclePlate, self.veicles) 

@@ -1,4 +1,4 @@
-from Veicle import Veicle
+from .Veicle import Veicle
 
 class Suply:
     def __init__(self, date, amount, value, veicle: Veicle, gastype) -> None:

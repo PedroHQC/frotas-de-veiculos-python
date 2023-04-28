@@ -1,4 +1,3 @@
-
 from classes.Driver import Driver
 from classes.Veicle import Veicle
 from classes.Suply import Suply 

@@ -1,4 +1,4 @@
-from Veicle import Veicle
+from .Veicle import Veicle
 
 class Maintainance:
 
