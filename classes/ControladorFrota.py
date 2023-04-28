@@ -12,7 +12,7 @@ class ControladorFrota:
     def alocarVeicleByDriver(driver: Driver, veicle: Veicle):
         pass
 
-    def programarManutencao(self, maintainanceDb, veicleDb):
+    def programarManutencao(self, maintainanceDb, veicle: Veicle):
         veicleData = self.searchVeicle(str(input("Digite a placa do veiculo: ")), veicleDb)
         date = str(input("Digite a data da manutenção: "))
         mType = str(input("Digite o tipo da manutanção: "))
@@ -25,4 +25,3 @@ class ControladorFrota:
 
     def programadorViagem(driver: Driver, veicle: Veicle):
         pass
-

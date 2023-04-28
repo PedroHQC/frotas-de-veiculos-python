@@ -1,13 +1,17 @@
 from driver import Driver
 from veicle import Veicle
+from suply import Suply 
 from menu import Menu
 from trip import Trip
+from maintainance import Maintainance
 
 class Admin:
     def __init__(self):
         self.drivers = []
         self.veicles = []
         self.trips = []
+        self.supplies = []
+        self.maintainances = []
 
     def registerDriver(self):
         name = str(input("Digite o nome do motorista: "))
@@ -84,10 +88,10 @@ class Admin:
         origin = str(input("Digite o local de inicio da viagem: "))
         destiny = str(input("Digite o destino da viagem: "))
         distance = float(input("Digite a distancia da viagem em km: "))
-        # tripDriver = self.searchDriver(str(input("Digite o CPF do motorista: ")), driverDb)
-        # tripVeicle = self.searchVeicle(str(input("Digite a placa do veiculo da viagem: ")),veicleDb)
+        tripDriver = self.searchDriver(str(input("Digite o CPF do motorista: ")), self.drivers)
+        tripVeicle = self.searchVeicle(str(input("Digite a placa do veiculo da viagem: ")),self.veicles)
 
-        trip = Trip(tripDate, origin, destiny, distance)
+        trip = Trip(tripDate, origin, destiny, distance, tripDriver, tripVeicle)
         self.trips.append(trip)
 
     def editTrip(self):
@@ -106,21 +110,23 @@ class Admin:
         if veicleMileage:
             return veiclePlate.mileage
     
-    # def registrySuply(self, suplyDb):
+    def registrySuply(self):
 
-    #     date = str(input("Digite a data do reabastecimento: "))
-    #     amount = str(input("Digite a quantidade de combustivel abastecido: "))
-    #     value = str(input("Digite o valor cobrado: "))
-    #     veicle = self.searchVeicle(str(input("digite a ")))
-    #     # gastype
+        date = str(input("Digite a data do reabastecimento: "))
+        amount = str(input("Digite a quantidade de combustivel abastecido: "))
+        value = str(input("Digite o valor cobrado: "))
+        veicle = self.searchVeicle()
+        gastype = str(input("Descrição da manutenção: "))
 
-    #     suplyDb.append(suply(date, amount, value, veicle))
+        suply = Suply(date, amount, value, veicle, gastype)
+        self.supplies.append(suply)
 
-    # def registryMaintainance(self, maintainanceDb, veicleDb):
+    def registryMaintainance(self, maintainanceDb, veicleDb):
 
-    #     veicleData = self.searchVeicle(str(input("Digite a placa do veiculo: ")), veicleDb)
-    #     date = str(input("Digite a data da manutenção: "))
-    #     mType = str(input("Digite o tipo da manutanção: "))
-    #     cost = float("Digite o valor da manutenção: ")
+        veicleData = self.searchVeicle()
+        date = str(input("Digite a data da manutenção: "))
+        mType = str(input("Digite o tipo da manutenção: "))
+        cost = float("Digite o valor da manutenção: ")
         
-    #     maintainanceDb.append(maintainance(veicleData, date, mType, cost))
+        maintainance = Maintainance(veicleData, date, mType, cost)
+        maintainanceDb.append(maintainance)
