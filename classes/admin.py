@@ -1,9 +1,7 @@
-from Driver import Driver
-from Veicle import Veicle
-from Suply import Suply
-from Menu import Menu
-from Trip import Trip
-from Maintainance import Maintainance
+from driver import Driver
+from veicle import Veicle
+from menu import Menu
+from trip import Trip
 
 class Admin:
     def __init__(self):
@@ -20,19 +18,30 @@ class Admin:
         driver = Driver(name, cpf, rg, cnh)
         self.drivers.append(driver)
 
-    def searchDriver(self, searchData):
+    def searchDriver(self):
+        searchData = str(input("Digite o CPF do motorista, sem pontos: "))
         for driver in self.drivers:
             if driver.cpf == searchData:
+                print(f"Nome: {driver.name}\nCPF: {driver.cpf}\nRG: {driver.rg}\nCNH: {driver.cnh}")
                 return driver
             
-    def editDriver(self, searchData):
-        driverToEdit = self.searchDriver(searchData)
-
+    def editDriver(self, atributeToChange):
+        driverToEdit = self.searchDriver()
         if driverToEdit:
-            Menu.driverMenuEdit()
-
-    def deleteDriver(self, driverData):
-        driverToRemove = self.searchDriver(driverData)
+            if atributeToChange == "name":
+                driverToEdit.name = str(input("Digite o novo nome a ser salvo: "))    
+            elif atributeToChange == "cpf":
+                driverToEdit.cpf = str(input("Digite o CPF nome a ser salvo: "))  
+            elif atributeToChange == "rg":
+                driverToEdit.rg = str(input("Digite o RG nome a ser salvo: "))  
+            elif atributeToChange == "cnh":
+                driverToEdit.cnh = str(input("Digite o CNH nome a ser salvo: "))  
+            print("Motorista modificado com sucesso!\n")
+        else:
+            print("Motorista não encontrado!\n")
+            
+    def deleteDriver(self):
+        driverToRemove = self.searchDriver()
 
         if driverToRemove:
             self.drivers.remove(driverToRemove)
@@ -90,12 +99,12 @@ class Admin:
             if trip.origin == origin and trip.destiny == destiny and trip.tripDate == date:
                 return trip
             
-    # def checkVeicleMileage(self, veiclePlate, veicleDb):
+    def checkVeicleMileage(self, veiclePlate, veicleDb):
     
-    #     veicleMileage = self.searchVeicle(veiclePlate, veicleDb) 
+        veicleMileage = self.searchVeicle(veiclePlate, veicleDb) 
 
-    #     if veicleMileage:
-    #         return veiclePlate.mileage
+        if veicleMileage:
+            return veiclePlate.mileage
     
     # def registrySuply(self, suplyDb):
 

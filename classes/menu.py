@@ -1,3 +1,4 @@
+from admin import Admin
 class Menu:
     @staticmethod
     def line():
@@ -33,21 +34,23 @@ class Menu:
 
                 
                 if option == 1:
-                    pass
+                    Admin.registerDriver()
+                    print("Motorista cadastrado com sucesso! \n")
                 elif option == 2:
-                    pass
+                    Admin.searchDriver()
                 elif option == 3:
                     Menu.driverMenuEdit()
                 elif option == 4:
-                    pass
+                    Admin.deleteDriver()
+                    print("Motorista deletado com sucesso!\n")
                 elif option == 0:
-                    print("Saindo ...")
+                    print("Saindo ...\n")
                     return
                 else:
-                    print("[ERROR] Opção Inválida")
+                    print("[ERROR] Opção Inválida\n")
 
             except ValueError:
-                print("Opção inválida. Por favor, digite um número válido.")
+                print("Opção inválida. Por favor, digite um número válido.\n")
     
     @staticmethod 
     def driverMenuEdit():
@@ -69,13 +72,13 @@ class Menu:
 
                 
                 if option == 1:
-                    pass
+                    Admin.editDriver("name")
                 elif option == 2:
-                    pass
+                    Admin.editDriver("cpf")
                 elif option == 3:
-                    pass
+                    Admin.editDriver("rg")
                 elif option == 4:
-                    pass
+                    Admin.editDriver("cnh")
                 elif option == 0:
                     print("Saindo ...")
                     return

@@ -1,8 +1,8 @@
-from Driver import Driver 
-from Veicle import Veicle
-from Admin import Admin
-from Suply import Suply
-from Maintainance import Maintainance
+from driver import Driver 
+from veicle import Veicle
+from admin import Admin
+from suply import Suply
+from maintainance import Maintainance
 
 class ControladorFrota:
     def __init__(self, admin: Admin):
