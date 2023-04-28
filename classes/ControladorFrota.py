@@ -1,19 +1,16 @@
-from driver import Driver 
-from veicle import Veicle
-from admin import Admin
-from suply import Suply
-from maintainance import Maintainance
+from Driver import Driver 
+from Veicle import Veicle
+from Admin import Admin
+from Suply import Suply
+from Maintainance import Maintainance
 
 class ControladorFrota:
     def __init__(self, admin: Admin):
         self.disponivel = [i for i in range(admin.veicle)]
         self.indisponivel = []
-     
-    def alocarVeicleByDriver(driver: Driver, veicle: Veicle):
-        pass
 
     def programarManutencao(self, maintainanceDb, veicle: Veicle):
-        veicleData = self.searchVeicle(str(input("Digite a placa do veiculo: ")), veicleDb)
+        veicleData = self.searchVeicle(str(input("Digite a placa do veiculo: ")))
         date = str(input("Digite a data da manutenção: "))
         mType = str(input("Digite o tipo da manutanção: "))
         cost = float("Digite o valor da manutenção: ")
