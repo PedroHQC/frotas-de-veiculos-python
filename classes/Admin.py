@@ -3,6 +3,7 @@ from .Veicle import Veicle
 from .Suply import Suply 
 from .Trip import Trip
 from .Maintainance import Maintainance
+from .Menu import Menu
 
 class Admin:
     def __init__(self):
@@ -28,6 +29,9 @@ class Admin:
             if driver.cpf == searchData:
                 print(f"Nome: {driver.name}\nCPF: {driver.cpf}\nRG: {driver.rg}\nCNH: {driver.cnh}")
                 return driver
+
+            print("Motorista não encontrado")
+            return Admin.searchDriver()
             
     def editDriver(self, atributeToChange):
         driverToEdit = self.searchDriver()
@@ -101,6 +105,9 @@ class Admin:
         for veicle in self.veicles:
             if veicle.plate == veiclePlate:
                 return veicle
+            else:
+                print("Veiculo não encontrado!")
+                return Admin.searchVeicle
 
     def editVeicle(self, atributeToChange):
         veicleToEdit = self.searchVeicle()
@@ -169,8 +176,10 @@ class Admin:
             #         trips.append(trip)
             #     else:
             #         self.trips.append([trip])
-            
-        print('[ERROR] Não é possível cadastrar viagem sem motorsista e veículos cadastrados!\n')
+        else:
+            print('[ERROR] Não é possível cadastrar viagem sem motorsista e veículos cadastrados!\n')
+            return Menu.menu()
+        
     
     def showTrip(self):
         for trip in self.trips:
@@ -182,6 +191,9 @@ class Admin:
         for trip in self.trips:
             if trip.codTrip == codTrip:
                 return trip
+            else:
+                print("Viagem não encontrado!")
+                return Admin.searchTrip
             
     def editTrip(self, atributeToChange):
         if len(self.veicles) > 0 and len(self.drivers) > 0:
@@ -201,17 +213,23 @@ class Admin:
                     tripToEdit.tripDriver = str(input("Digite o novo motorista da viagem: "))
                 elif atributeToChange == "tripVeicle":
                     tripToEdit.tripVeicle = str(input("Digite o novo veiculo da viagem: "))
-                print("Motorista modificado com sucesso!\n")
+                print("Informações modificadas com sucesso!\n")
             else:
-                print("Motorista não encontrado!\n")
+                print("Informações não encontrado!\n")
 
-        print('[ERROR] Não é possível cadastrar viagem sem motorsista e veículos cadastrados!\n')
+        else:
+            print('[ERROR] Não é possível cadastrar viagem sem motorsista e veículos cadastrados!\n')
+            return Menu.menu()
 
 
     def checkVeicleMileage(self):
         veicleMileage = self.searchVeicle() 
 
         if veicleMileage:
+            if veicleMileage:
+                for mileage in self.trips:
+                    updateKmTrips += mileage.distance
+                    print(f"Este é o total de Km do veiculo: {updateKmTrips}\n")
             return veicleMileage.mileage
     
     def registrySuply(self):
@@ -226,16 +244,11 @@ class Admin:
             suply = Suply(date, amount, value, veicle, gastype)
 
             self.supplies.append(suply)
-
-        print("[ERROR] Não existe veículo cadastrado!\n")
-
-    def totalSpents(self):
-        suplySpents = 0
-        for suply in self.supplies:
-            suplySpents += suply.value
-            
-        print(f"Este é o gasto total com abastecimentos: {suplySpents}\n")
-
+        
+        else:
+            print("[ERROR] Não existe veículo cadastrado!\n")
+            return Menu.menu()
+        
     def registryMaintainance(self, maintainanceDb, veicleDb):
 
         veicleData = self.searchVeicle()
@@ -246,3 +259,32 @@ class Admin:
         maintainance = Maintainance(veicleData, date, mType, cost)
 
         maintainanceDb.append(maintainance)
+
+    def totalSpentsSuply(self):
+        suplySpents = 0
+        for suply in self.supplies:
+            suplySpents += suply.value
+            
+        print(f"Este é o gasto total com abastecimentos: {suplySpents}\n")
+    
+    def totalSpentsMaintainance(self):
+        maintainanceSpents = 0
+        for maintainance in self.maintainances:
+            maintainanceSpents += maintainance.cost
+            
+        print(f"Este é o gasto total com manutenção: {maintainanceSpents}\n")
+    
+    def dictionary(self):
+        dic = {'Placa': [], 'Código da viagem': [], 'CPF': [], 'Código do Abastecimento': [], 'Código da Manutenção': []}
+        for driver in self.drivers:
+            dic['CPF'].append(driver['CPF'])
+        for veicle in self.veicles:
+            dic['Placa'].append(veicle['Placa'])
+        for trip in self.trips:
+            dic['Código da viagem'].append(trip['Código da viagem'])
+        for supply in self.supplies:
+            dic['Código do Abastecimento'].append(supply['Código do Abastecimento'])
+        for maintenance in self.maintenances:
+            dic['Código da Manutenção'].append(maintenance['Código da Manutenção'])
+        return dic
+    

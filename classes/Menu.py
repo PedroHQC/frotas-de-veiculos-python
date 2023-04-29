@@ -10,11 +10,11 @@ class Menu:
     def menu():
         print("BEM VINDO AO PAK")
         Menu.line()
-        print("[1] Motorista")
-        print("[2] Veículo")
-        print("[3] Viagem")
-        print("[4] Abastercer")
-        print("[5] Manutenção")
+        print("[1] Gerenciamento de Motorista")
+        print("[2] Gerenciamento de Veículo")
+        print("[3] Gerenciamento de Viagem")
+        print("[4] Registrar Abastecimento")
+        print("[5] Registrar Manutenção")
         print("[6] Relatório")
         print("[0] Sair")
         Menu.line()
@@ -79,8 +79,6 @@ class Menu:
 
             try:
                 option = int(option)
-
-
                 
                 if option == 1:
                     admin.editDriver("name")
@@ -121,14 +119,11 @@ class Menu:
 
                 if option == 1:
                     admin.registerVeicle()
-
                 elif option == 0:
                     print("Saindo ...")
                     return
-
-
+                
                 elif len(admin.veicles) > 0:
-
                     if option == 2:
                         admin.searchVeicle()
                     elif option == 3:
@@ -314,6 +309,7 @@ class Menu:
             print("[5] Veiculo com maior km")
             print("[6] Total de despesas com abastecimeno")
             print("[7] Total de despesas de manutencao")
+            print("[8] Dicionario com as entidades")
             Menu.line()
 
             option = input("Sua opção: ")
@@ -332,7 +328,11 @@ class Menu:
                 elif option == 5:
                     admin.showVeicleBiggerMileage()
                 elif option == 6:
-                    admin.totalSpents()
+                    admin.totalSpentsSuply()
+                elif option == 7:
+                    admin.totalSpentsMaintainance()
+                elif option == 8:
+                    admin.dictionary()
                 elif option == 0:
                     print("Saindo ...\n")
                     return
