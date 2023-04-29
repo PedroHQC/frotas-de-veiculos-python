@@ -1,4 +1,5 @@
-from classes.Menu import Menu, Admin
+from classes.Menu import Menu
+from classes.Admin import Admin
 
 
 def init():

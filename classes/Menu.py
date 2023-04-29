@@ -1,5 +1,3 @@
-from .Admin import Admin
-
 class Menu:
 
     @staticmethod
@@ -23,6 +21,8 @@ class Menu:
     def driverMenu(admin):
 
         while True:
+            Menu.line()
+
             print("[1] Cadastrar Motorista")
             print("[2] Pesquisar Motorista")
             print("[3] Editar Motorista")
@@ -49,16 +49,24 @@ class Menu:
 
                 elif len(admin.drivers) > 0:
                     if option == 2:
-                        admin.searchDriver()
+                        searchDriver = admin.searchDriver()
+
+                        if searchDriver:
+                            Menu.line()
+                            print(f"Nome: {searchDriver.name}\nCPF: {searchDriver.cpf}\nRG: {searchDriver.rg}\nCNH: {searchDriver.cnh}")
+                            Menu.line()
+                        else:
+                            print('Motorista não encontrado!\n')
+
                     elif option == 3:
-                        Menu.driverMenuEdit()
+                        Menu.driverMenuEdit(admin)
                     elif option == 4:
                         admin.deleteDriver()
                         print("Motorista deletado com sucesso!\n")
                     elif option == 5:
                         admin.showDriver()
                 else:
-                    print("[ERROR] Opção Inválida\n")
+                    print("[ERROR] Não existe motorista ou veículo cadastrado\nou opção inválida\n")
 
             except ValueError:
                 print("Opção inválida. Por favor, digite um número válido.\n")
@@ -125,17 +133,25 @@ class Menu:
                 
                 elif len(admin.veicles) > 0:
                     if option == 2:
-                        admin.searchVeicle()
+                        searchVeicle = admin.searchVeicle()
+
+                        if searchVeicle:
+                            Menu.line()
+                            print(f"Marca: {searchVeicle.brand}\nAno: {searchVeicle.year}\nPlaca: {searchVeicle.plate}\nChassi: {searchVeicle.chassis}\nQuilometragem:{searchVeicle.mileage}\n")
+                            Menu.line()
+                        else:
+                            print("Veículo não encontrado!\n")
+
                     elif option == 3:
                         Menu.veicleMenuEdit()
                     elif option == 4:
                         admin.deleteVeicle()
                     elif option == 5:
-                        admin.checkVeicleMileage()
+                        print(f"Este é o total de Km do veiculo: {admin.checkVeicleMileage()}\n")
                     elif option == 6:
                         admin.showVeicle()
                 else:
-                    print("[ERROR] Opção Inválida")
+                    print("[ERROR] Não existe veículo cadastrado ou opção inválida\n")
 
             except ValueError:
                 print("Opção inválida. Por favor, digite um número válido.")
@@ -204,14 +220,13 @@ class Menu:
                 elif option == 0:
                     print("Saindo ...")
                     return
-                
-                if len(admin.trips) > 0:
+                elif len(admin.trips) > 0:
                     if option == 2:
                         Menu.tripMenuEdit()
                     elif option == 3:
                         admin.showTrip()
-                    else:
-                        print("[ERROR] Opção Inválida")
+                else:
+                    print("[ERROR] Não existe motorista ou veículo cadastrado\nou opção inválida\n")
 
             except ValueError:
                 print("Opção inválida. Por favor, digite um número válido.")
@@ -275,6 +290,7 @@ class Menu:
                     admin.registrySuply()
                 elif option == 0:
                     print('Voltando ...')
+                    return
                 else:
                     print("[ERROR] Opção Inválida")
 

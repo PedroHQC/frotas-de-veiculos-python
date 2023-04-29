@@ -27,11 +27,7 @@ class Admin:
 
         for driver in self.drivers:
             if driver.cpf == searchData:
-                print(f"Nome: {driver.name}\nCPF: {driver.cpf}\nRG: {driver.rg}\nCNH: {driver.cnh}")
                 return driver
-
-            print("Motorista não encontrado")
-            return Admin.searchDriver()
             
     def editDriver(self, atributeToChange):
         driverToEdit = self.searchDriver()
@@ -105,9 +101,6 @@ class Admin:
         for veicle in self.veicles:
             if veicle.plate == veiclePlate:
                 return veicle
-            else:
-                print("Veiculo não encontrado!")
-                return Admin.searchVeicle
 
     def editVeicle(self, atributeToChange):
         veicleToEdit = self.searchVeicle()
@@ -143,6 +136,16 @@ class Admin:
         for veicle in self.veicles:
             print(veicle.plate, veicle.model, veicle.chassis)
             
+    def checkVeicleMileage(self):
+        veicle = self.searchVeicle() 
+
+        if veicle:
+            for trip in self.trips:
+                if trip.tripVeicle.plate == veicle.plate:
+                    veicle.mileage += trip.distance
+            
+            return veicle.mileage
+        
     def veiclesQuantity(self):
         print(f"Esta e a quatidade de veiculos cadastrados: {len(self.veicles)}\n")
        
@@ -171,11 +174,8 @@ class Admin:
 
             trip = Trip(tripDate, origin, destiny, distance, tripDriver, tripVeicle, codTrip)
 
-            # for trips in self.trips:
-            #     if trips[0].codTrip == trip.codTrip:
-            #         trips.append(trip)
-            #     else:
-            #         self.trips.append([trip])
+            self.trips.append(trip)
+
         else:
             print('[ERROR] Não é possível cadastrar viagem sem motorsista e veículos cadastrados!\n')
             return Menu.menu()
@@ -193,7 +193,7 @@ class Admin:
                 return trip
             else:
                 print("Viagem não encontrado!")
-                return Admin.searchTrip
+                return Admin.searchTrip()
             
     def editTrip(self, atributeToChange):
         if len(self.veicles) > 0 and len(self.drivers) > 0:
@@ -220,17 +220,6 @@ class Admin:
         else:
             print('[ERROR] Não é possível cadastrar viagem sem motorsista e veículos cadastrados!\n')
             return Menu.menu()
-
-
-    def checkVeicleMileage(self):
-        veicleMileage = self.searchVeicle() 
-
-        if veicleMileage:
-            if veicleMileage:
-                for mileage in self.trips:
-                    updateKmTrips += mileage.distance
-                    print(f"Este é o total de Km do veiculo: {updateKmTrips}\n")
-            return veicleMileage.mileage
     
     def registrySuply(self):
         if len(self.veicles) > 0:
@@ -287,4 +276,3 @@ class Admin:
         for maintenance in self.maintenances:
             dic['Código da Manutenção'].append(maintenance['Código da Manutenção'])
         return dic
-    
