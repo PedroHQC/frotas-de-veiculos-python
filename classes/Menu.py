@@ -289,7 +289,6 @@ class Menu:
                 if option == 1:
                     admin.registrySuply()
                 elif option == 0:
-                    print('Voltando ...')
                     return
                 else:
                     print("[ERROR] Opção Inválida")
@@ -303,6 +302,7 @@ class Menu:
 
         while True:
             print('[1] Cadastrar Manuntencao')
+            print('[0] Voltar')
             Menu.line()
 
             option = input("Sua opção: ")
@@ -311,6 +311,10 @@ class Menu:
                 option = int(option)
                 if option == 1:
                     admin.registryMaintainance()
+                elif  option == 0:
+                    return
+                else:
+                    print("[ERROR] Opção Inválida")
             except ValueError:
                 print("Opção inválida. Por favor, digite um número válido.")    
                 

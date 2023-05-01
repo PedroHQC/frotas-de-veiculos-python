@@ -175,10 +175,10 @@ class Admin:
             trip = Trip(tripDate, origin, destiny, distance, tripDriver, tripVeicle, codTrip)
 
             self.trips.append(trip)
+            return
 
-        else:
-            print('[ERROR] Não é possível cadastrar viagem sem motorsista e veículos cadastrados!\n')
-            return Menu.menu()
+        
+        print('[ERROR] Não é possível cadastrar viagem sem motorsista e veículos cadastrados!\n')
         
     
     def showTrip(self):
@@ -233,21 +233,24 @@ class Admin:
             suply = Suply(date, amount, value, veicle, gastype)
 
             self.supplies.append(suply)
+            return 
         
-        else:
-            print("[ERROR] Não existe veículo cadastrado!\n")
-            return Menu.menu()
-        
-    def registryMaintainance(self, maintainanceDb, veicleDb):
+        print("[ERROR] Não existe veículo cadastrado!\n")
 
-        veicleData = self.searchVeicle()
-        date = str(input("Digite a data da manutenção: "))
-        mType = str(input("Digite o tipo da manutenção: "))
-        cost = float("Digite o valor da manutenção: ")
         
-        maintainance = Maintainance(veicleData, date, mType, cost)
+    def registryMaintainance(self):
+        if len(self.veicles) > 0: 
+            veicleData = self.searchVeicle()
+            date = str(input("Digite a data da manutenção: "))
+            mType = str(input("Digite o tipo da manutenção: "))
+            cost = float("Digite o valor da manutenção: ")
+            
+            maintainance = Maintainance(veicleData, date, mType, cost)
 
-        maintainanceDb.append(maintainance)
+            self.maintainances.append(maintainance)
+            return
+        
+        print("[ERROR] Não existe veículo cadastrado!\n")
 
     def totalSpentsSuply(self):
         suplySpents = 0
